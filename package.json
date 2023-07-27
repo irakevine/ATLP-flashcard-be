@@ -4,11 +4,23 @@
   "description": "flashcard Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "npm -s run generate",
+    "dev": "NODE_ENV=development ts-node-dev -r dotenv/config --no-notify --respawn --transpile-only src",
+    "generate": "npm -s run generate:nexus && npm -s run generate:prisma",
+    "generate:nexus": "ts-node --transpile-only src/schema",
+    "generate:prisma": "prisma generate"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "ts-node-dev": "^1.1.8",
     "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "apollo-server-core": "^3.3.0",
+    "apollo-server-express": "^3.3.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.3"
   }
 }

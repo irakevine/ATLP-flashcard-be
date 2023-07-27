@@ -1,22 +1,16 @@
-import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
+import { ApolloServerPluginDrainHttpServer ,ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import http from "http";
-
-import {
-	ApolloServerPluginLandingPageGraphQLPlayground
-  } from "apollo-server-core";
-
-
-const IS_DEV = process.env.NODE_ENV === "development";
-const localOrigins = [/^http:\/\/localhost:\d{4}$/];
-const prodOrigins = [/^https:\/\/.*\.yourdomain\.com$/];
+import { schema } from "./schema";
+import { createContext } from "./context";
 
 async function startApolloServer() {
 	const app = express();
 	const httpServer = http.createServer(app);
 	const server = new ApolloServer({
-		
+		schema:schema,
+		context:createContext,
 		plugins: [
 			ApolloServerPluginDrainHttpServer({ httpServer }),
 			ApolloServerPluginLandingPageGraphQLPlayground()
@@ -24,15 +18,7 @@ async function startApolloServer() {
 	});
 	await server.start();
 
-	
-
-	server.applyMiddleware({ 
-		app,
-		cors: {
-			origin: IS_DEV ? localOrigins : prodOrigins,
-			credentials: true,
-		},
-	});
+    server.applyMiddleware({app});
 	await new Promise<void>((resolve) => {
         httpServer.listen({ port: 4000 })
         resolve()

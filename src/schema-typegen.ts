@@ -6,6 +6,9 @@
 
 import type { Context as Context } from "./context"
 
+
+
+
 declare global {
   interface NexusGen extends NexusGenTypes {}
 }
@@ -49,23 +52,23 @@ export interface NexusGenObjects {
     isCorrect: boolean; // Boolean!
   }
   Category: { // root type
-    Name: string; // String!
     id: string; // ID!
+    name: string; // String!
   }
   Query: {};
   Question: { // root type
     content: string; // String!
-    difficulty level: string; // String!
+    difficultyLevel: string; // String!
     id: string; // ID!
   }
   QuizHistory: { // root type
-    UserId: string; // ID!
     id: string; // ID!
     score: number; // Int!
+    userId: string; // ID!
   }
   User: { // root type
-    Name: string; // String!
     id: string; // ID!
+    name: string; // String!
   }
 }
 
@@ -86,8 +89,8 @@ export interface NexusGenFieldTypes {
     isCorrect: boolean; // Boolean!
   }
   Category: { // field return type
-    Name: string; // String!
     id: string; // ID!
+    name: string; // String!
   }
   Query: { // field return type
     Questions: NexusGenRootTypes['Question'][]; // [Question!]!
@@ -95,17 +98,17 @@ export interface NexusGenFieldTypes {
   }
   Question: { // field return type
     content: string; // String!
-    difficulty level: string; // String!
+    difficultyLevel: string; // String!
     id: string; // ID!
   }
   QuizHistory: { // field return type
-    UserId: string; // ID!
     id: string; // ID!
     score: number; // Int!
+    userId: string; // ID!
   }
   User: { // field return type
-    Name: string; // String!
     id: string; // ID!
+    name: string; // String!
   }
 }
 
@@ -116,8 +119,8 @@ export interface NexusGenFieldTypeNames {
     isCorrect: 'Boolean'
   }
   Category: { // field return type name
-    Name: 'String'
     id: 'ID'
+    name: 'String'
   }
   Query: { // field return type name
     Questions: 'Question'
@@ -125,17 +128,17 @@ export interface NexusGenFieldTypeNames {
   }
   Question: { // field return type name
     content: 'String'
-    difficulty level: 'String'
+    difficultyLevel: 'String'
     id: 'ID'
   }
   QuizHistory: { // field return type name
-    UserId: 'ID'
     id: 'ID'
     score: 'Int'
+    userId: 'ID'
   }
   User: { // field return type name
-    Name: 'String'
     id: 'ID'
+    name: 'String'
   }
 }
 

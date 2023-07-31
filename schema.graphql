@@ -13,8 +13,8 @@ input AnswerWhereWhereUniqueInput {
 }
 
 type Category {
-  Name: String!
   id: ID!
+  name: String!
 }
 
 input CreateQuestionInput {
@@ -34,7 +34,7 @@ type Query {
 
 type Question {
   content: String!
-  difficulty level: String!
+  difficultyLevel: String!
   id: ID!
 }
 
@@ -43,14 +43,14 @@ input QuestionWhereUniqueInput {
 }
 
 type QuizHistory {
-  UserId: ID!
   id: ID!
   score: Int!
+  userId: ID!
 }
 
 type User {
-  Name: String!
   id: ID!
+  name: String!
 }
 
 input createAnswerWhereUniqueInput {

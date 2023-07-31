@@ -9,28 +9,37 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
-model User{
-  id  String @id @default(cuid())
-  Name String 
-  description String
- votes vote[]
-
+model User {
+  id String @id @default(cuid())
+  name string
+  quizHistory  QuizHistory[]
 }
-model Answer{
-  id  String @id @default(cuid())
+model Category {
+  id String @id @default(cuid())
+  name string
+  question Question[]
+}
+model Question {
+  id String @id @default(cuid())
+  content String
+  difficultyLevel String
+  categoryId String 
+  category Category @relation(fields: [categoryId],references: [id])
+  answers Answer[] 
+}
+model Answer {
+  id String @id @default(cuid())
   isCorrect Boolean
   content String
+  questionId String
+  question Question @relation(fields: [questionId],references: [id])
+
 }
-model Question{
-  id  String @id @default(cuid())
-  title String
-  content String
-   votes vote[]
-}
-model vote{
-  UserId String
-  QuestionId String
-  user     User @relation(fields:[UserId ], references: [id], onDelete: Cascade)
-  question Question @relation(fields:[ QuestionId ], references: [id], onDelete: Cascade)
-  @@id([UserId,QuestionId ])
+
+model QuizHistory{
+  id String @id @default(cuid())
+  score number
+  userId String
+  user User @relation(fields: [userId],references: [id])
+
 }

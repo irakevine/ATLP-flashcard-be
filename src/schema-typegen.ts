@@ -6,9 +6,6 @@
 
 import type { Context as Context } from "./context"
 
-
-
-
 declare global {
   interface NexusGen extends NexusGenTypes {}
 }

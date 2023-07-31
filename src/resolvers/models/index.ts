@@ -5,7 +5,7 @@ export const User = objectType({
 name:"User",
 definition(t){
     t.id("id");
-    t.string("Name"); 
+    t.string("name"); 
 }
 })
 // CATEGORY
@@ -13,7 +13,7 @@ export const Category = objectType({
     name:"Category",
     definition(t){
         t.id("id");
-        t.string("Name");  
+        t.string("name");  
     }
     })
 
@@ -23,7 +23,7 @@ export const Question = objectType({
     definition(t){
         t.id("id")
         t.string("content")
-        t.string("difficulty level")  
+        t.string("difficultyLevel")  
     }
 })
 
@@ -43,7 +43,7 @@ export const QuizHistory = objectType({
     name:"QuizHistory",
     definition(t){
         t.id("id")
-        t.id("UserId")
+        t.id("userId")
         t.int("score")
             }
         })

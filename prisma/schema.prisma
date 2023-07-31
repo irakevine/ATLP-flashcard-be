@@ -11,13 +11,13 @@ generator client {
 }
 model User {
   id String @id @default(cuid())
-  name string
-  quizHistory  QuizHistory[]
+  name String
+  quizHistorys  QuizHistory[]
 }
 model Category {
   id String @id @default(cuid())
-  name string
-  question Question[]
+  name String
+  questions Question[]
 }
 model Question {
   id String @id @default(cuid())
@@ -38,7 +38,7 @@ model Answer {
 
 model QuizHistory{
   id String @id @default(cuid())
-  score number
+  score Int
   userId String
   user User @relation(fields: [userId],references: [id])
 
